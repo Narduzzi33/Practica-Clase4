@@ -1,4 +1,5 @@
 
+//Ejercicio1
 function esperar(tiempo){
     return new Promise((resolve) => {
         setTimeout(() => {
@@ -23,4 +24,18 @@ esperar(2000)
         console.log('Error:', error);
     })
 //Si no resuelve la promesa sale por el catch
+
+
+//Ejercicio 2
+async function esperar(tiempo){
+    const resultado = await new Promise((resolve) => {
+        setTimeout(() => {
+            resolve(`Esperando ${tiempo} ms `);
+        }, tiempo);
+    })
+    console.log(resultado);
+}
+//
+
+esperar(2000);
 
