@@ -39,3 +39,50 @@ async function esperar(tiempo){
 
 esperar(2000);
 
+//Ejercicio 3
+const usuario = {
+    idUsuario : 1,
+    nombre : "Camilo",
+    publicaciones : ["Hola", "Como estas", "Chau"]
+}
+
+function obtenerUsuario(idUsuario){
+    return new Promise((resolve) => {
+        setTimeout(() => {
+            if(idUsuario == usuario.idUsuario) {
+                resolve(usuario);
+            }
+        },2000);
+    })
+}
+
+function obtenerPublicaciones(idUsuario){
+    return new Promise((resolve) => {
+        setTimeout(() => {
+            if(idUsuario == usuario.idUsuario) {
+                resolve(usuario.publicaciones);
+            } 
+        },2000);
+    })
+}
+
+async function obtenerInformacionCompletaUsuario(idUsuario){
+    try{
+        obtenerUsuario(idUsuario)
+        .then((resultado) => {
+            const usuario = resultado;
+            console.log(`Nombre de usuario: ${usuario.nombre}`);
+        });
+        obtenerPublicaciones(idUsuario)
+        .then((resultado) => {
+            const publicaciones = resultado;
+            console.log(`Publicaciones del usuario: ${publicaciones.join(',')}`);
+        });
+        
+        
+    } catch(error){
+        console.log('Error:', error);
+    }
+} 
+
+obtenerInformacionCompletaUsuario(1);
