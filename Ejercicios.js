@@ -78,11 +78,48 @@ async function obtenerInformacionCompletaUsuario(idUsuario){
             const publicaciones = resultado;
             console.log(`Publicaciones del usuario: ${publicaciones.join(',')}`);
         });
-        
-        
     } catch(error){
         console.log('Error:', error);
     }
 } 
 
 obtenerInformacionCompletaUsuario(1);
+
+//Ejercicio4
+const usuario2 = {
+    idUsuario : 2,
+    nombre : "Juan",
+    publicaciones : ["Chau","Como estas","Hola"]
+}
+
+function obtenerUsuario2(idUsuario){
+    return new Promise((resolve) => {
+        setTimeout(() => {
+            if(idUsuario == usuario2.idUsuario) {
+                resolve(usuario2);
+            }
+        },2000);
+    })
+}
+
+function obtenerPublicaciones2(idUsuario){
+    return new Promise((resolve) => {
+        setTimeout(() => {
+            if(idUsuario == usuario2.idUsuario) {
+                resolve(usuario2.publicaciones);
+            } 
+        },2000);
+    })
+}
+
+Promise.all([
+    obtenerUsuario2(2),
+    obtenerPublicaciones2(2)
+])
+.then((resultados) => {
+    resultados.forEach((resultado) => console.log(resultado.nombre, resultado.publicaciones.join(',')));
+})
+.catch((error) => {
+    console.log("Algo salio mal:", error);
+})
+
